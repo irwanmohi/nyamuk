@@ -8,6 +8,38 @@ NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
 
+# install wget and curl and update
+apt -y install wget curl
+apt update
+apt upgrade
+apt-get update
+apt-get upgrade -y
+
+# Install Ssl & Certificates
+apt install ssl-cert
+apt install ca-certificates
+sudo apt-get install apt-transport-https gnupg2 curl
+
+# Removing some firewall tools that may affect other services
+apt-get remove --purge ufw firewalld -y
+ 
+# Installing some important machine essentials
+apt-get install nano zip unzip tar gzip p7zip-full bc rc openssl cron net-tools dnsutils dos2unix screen bzip2 ccrypt -y
+ 
+# Now installing all our wanted services
+apt-get install dropbear stunnel4 ca-certificates nginx ruby apt-transport-https lsb-release squid3 -y
+
+# Installing all required packages to install Webmin
+apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python dbus libxml-parser-perl -y
+apt-get install shared-mime-info jq fail2ban -y
+
+ 
+# Installing a text colorizer
+gem install lolcat
+
+# Trying to remove obsolette packages after installation
+apt-get autoremove -y
+
 # simple password minimal
 wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/password"
 chmod +x /etc/pam.d/common-password
@@ -90,16 +122,6 @@ systemctl start rc-local.service
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
-#update
-apt update -y
-apt upgrade -y
-apt dist-upgrade -y
-apt-get remove --purge ufw firewalld -y
-apt-get remove --purge exim4 -y
-
-# install wget and curl
-apt -y install wget curl
-
 # set time UMT +8
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
@@ -143,18 +165,25 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
 
-# install dropbear
+# creating dropbear config using cat eof tricks
 apt -y install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109"/g' /etc/default/dropbear
+cat > /etc/default/dropbear <<-END
+# My Dropbear Config
+NO_START=0
+DROPBEAR_PORT=109
+DROPBEAR_EXTRA_ARGS="-p 143"
+DROPBEAR_BANNER="/etc/banner"
+DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
+DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
+DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
+DROPBEAR_RECEIVE_WINDOW=65536
+END
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
 
 # install squid
 cd
-apt -y install squid
 wget -q -O /etc/squid/squid.conf "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
@@ -175,40 +204,33 @@ systemctl enable vnstat
 rm -f /root/vnstat-2.6.tar.gz
 rm -rf /root/vnstat-2.6
 
-# install stunnel
-apt install stunnel4 -y
+# Creating stunnel certifcate using openssl
+openssl req -new -x509 -days 9999 -nodes -subj "/C=PH/ST=NCR/L=Kuala_Lumpur/O=Myteam/OU=Myteam/CN=Myteam" -out /etc/stunnel/stunnel.pem -keyout /etc/stunnel/stunnel.pem &> /dev/null
+##  > /dev/null 2>&1
+
+# Creating stunnel server config
 cat > /etc/stunnel/stunnel.conf <<-END
+pid = /var/run/stunnel.pid
 cert = /etc/stunnel/stunnel.pem
 client = no
-socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
-[dropbear]
+TIMEOUTclose = 0
+[ssh]
 accept = 444
-connect = 127.0.0.1:109
-[dropbear]
-accept = 777
 connect = 127.0.0.1:22
-[openvpn]
-accept = 442
-connect = 127.0.0.1:1194
+[dropbear]
+accept = 666
+connect = 127.0.0.1:143
 END
-
-# make a certificate
-openssl genrsa -out key.pem 2048
-openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
--subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
-cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 
 # konfigurasi stunnel
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
 
-#sshws
+#Ohp Tools
 apt -y install python
 apt -y install tmux
-apt -y install ruby
-gem install lolcat
 apt -y install figlet
 
 #OpenVPN
