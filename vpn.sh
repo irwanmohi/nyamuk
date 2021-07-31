@@ -49,8 +49,8 @@ systemctl enable openvpn@server-tcp
 mkdir /root/ovpn-config
 wget -qO /root/ovpn-config/client-udp.ovpn "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/openvpn/client-udp.ovpn"
 wget -qO /root/ovpn-config/client-tcp.ovpn "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/openvpn/client-tcp.ovpn"
-sed -i "s|xxx.xxx.xxx.xxx|$ipAddress|g" /root/ovpn-config/client-udp.ovpn
-sed -i "s|xxx.xxx.xxx.xxx|$ipAddress|g" /root/ovpn-config/client-tcp.ovpn
+sed -i "s|xxx.xxx.xxx.xxx|$MYIP2|g" /root/ovpn-config/client-udp.ovpn
+sed -i "s|xxx.xxx.xxx.xxx|$MYIP2|g" /root/ovpn-config/client-tcp.ovpn
 echo "" >> /root/ovpn-config/client-tcp.ovpn
 echo "<ca>" >> /root/ovpn-config/client-tcp.ovpn
 cat "/etc/openvpn/key/ca.crt" >> /root/ovpn-config/client-tcp.ovpn
