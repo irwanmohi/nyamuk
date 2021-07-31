@@ -26,7 +26,7 @@ echo -e "\e[1;32m═════════════════════
 echo -e " x)   MENU"
 echo -e "\e[1;32m═════════════════════════════════════════\e[m" | lolcat
 echo -e ""
-read -p "     Please Input Number  [1-4 or x] :  "  wgr
+read -p "   Please Input Number  [1-4 or x] :  "  wgr
 echo -e ""
 case $wgr in
 1)
