@@ -66,7 +66,7 @@ echo "   - Magic Proxy SSH         : 8180 (Proxy Tisu Magic)"  | tee -a log-inst
 echo "   - Magic Proxy OVPN        : 8000 (Proxy Tisu Magic)"  | tee -a log-install.txt
 echo "   - Badvpn                  : 7100, 7200, 7300"  | tee -a log-install.txt
 echo "   - Nginx                   : 81"  | tee -a log-install.txt
-echo "   - Wireguard               : 7070"  | tee -a log-install.txt
+echo "   - Wireguard               : 8118"  | tee -a log-install.txt
 echo "   - Shadowsocks-R           : 1443-1543"  | tee -a log-install.txt
 echo "   - SS-OBFS TLS             : 2443-2543"  | tee -a log-install.txt
 echo "   - SS-OBFS HTTP            : 3443-3543"  | tee -a log-install.txt
