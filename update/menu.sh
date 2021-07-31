@@ -38,7 +38,7 @@ echo -e   "   6\e[1;33m)\e[m Panel TRojan"
 echo -e   "  \e[1;32m════════════════════════════════════════════════════════════\e[m" | lolcat
 echo -e   "                             SYSTEM MENU\e[m" | lolcat 
 echo -e   "  \e[1;32m════════════════════════════════════════════════════════════\e[m" | lolcat
-echo -e   "   7\e[1;33m)\e[m  Add Subdomain Host For VPS"
+echo -e   "   7\e[1;33m)\e[m   Add Subdomain Host For VPS"
 echo -e   "   8\e[1;33m)\e[m  Renew Certificate V2RAY"
 echo -e   "   9\e[1;33m)\e[m  Change Port All Account"
 echo -e   "   10\e[1;33m)\e[m  Autobackup Data VPS"
@@ -52,13 +52,16 @@ echo -e   "   17\e[1;33m)\e[m  Speedtest VPS"
 echo -e   "   18\e[1;33m)\e[m  Information Display System" 
 echo -e   "   19\e[1;33m)\e[m  Info Script Auto Install"
 echo -e   "   20\e[1;33m)\e[m  Install BBR"
-echo -e   "   21\e[1;33m)\e[m  Clear log"
-echo -e   "   22\e[1;33m)\e[m  Auto Reboot"
+echo -e   "   21\e[1;33m)\e[m  Add ID Cloudflare"
+echo -e   "   22\e[1;33m)\e[m  Cloudflare Add-Ons"
+echo -e   "   23\e[1;33m)\e[m  Pointing BUG"
+echo -e   "   24\e[1;33m)\e[m  Clear log"
+echo -e   "   25\e[1;33m)\e[m  Auto Reboot"
 echo -e   "  \e[1;32m════════════════════════════════════════════════════════════\e[m" | lolcat
 echo -e   "   x)   Exit" | lolcat
 echo -e   "  \e[1;32m════════════════════════════════════════════════════════════\e[m" | lolcat
 echo -e   ""
-read -p "     Select From Options [1-22 or x] :  " menu
+read -p "     Select From Options [1-25 or x] :  " menu
 echo -e   ""
 case $menu in
 1)
@@ -122,9 +125,18 @@ about
 bbr
 ;;
 21)
-clear-log
+cff
 ;;
 22)
+cfd
+;;
+23)
+cfh
+;;
+24)
+clear-log
+;;
+25)
 autoreboot
 ;;
 x)
