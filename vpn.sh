@@ -38,12 +38,10 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 
 # Removing all existing openvpn server files
-rm -rf /etc/openvpn/*
 rm -f /etc/openvpn/server/server-tcp-1194.conf
 rm -f /etc/openvpn/client-tcp-1194.ovpn
 rm -f /home/vps/public_html/client-tcp-1194.ovpn
 cat > /etc/openvpn/server/server-tcp-1194.conf<<END
-# OpenVPN TCP
 port 1194
 proto tcp
 dev tun
@@ -116,7 +114,6 @@ rm -f /etc/openvpn/server/server-udp-2200.conf
 rm -f /etc/openvpn/client-udp-2200.ovpn
 rm -f /home/vps/public_html/client-tcp-2200.ovpn
 cat > /etc/openvpn/server/server-udp-2200.conf<<END
-# OpenVPN UDP
 port 2200
 proto udp
 dev tun
