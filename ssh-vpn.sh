@@ -110,8 +110,8 @@ sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 # set nameserver
 rm -f /etc/resolv.conf
 cat > /etc/resolv.conf <<-END
-nameserver 8.8.8.8
-nameserver 8.8.4.4
+nameserver 1.1.1.1
+nameserver 1.0.0.1
 END
 
 # enable rc local
