@@ -59,6 +59,8 @@ echo "" >> /root/ovpn-config/client-udp.ovpn
 echo "<ca>" >> /root/ovpn-config/client-udp.ovpn
 cat "/etc/openvpn/key/ca.crt" >> /root/ovpn-config/client-udp.ovpn
 echo "</ca>" >> /root/ovpn-config/client-udp.ovpn
+cp /root/ovpn-config/client-tcp.ovpn /home/vps/public_html/client-tcp.ovpn
+cp /root/ovpn-config/client-udp.ovpn /home/vps/public_html/client-udp.ovpn
 
 # Configure UFW
 apt-get install -y ufw
