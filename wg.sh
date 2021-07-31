@@ -33,6 +33,8 @@ SERVER_PUB_NIC=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 	if [[ $OS == 'ubuntu' ]]; then
 	apt install -y wireguard
 elif [[ $OS == 'debian' ]]; then
+	echo "deb http://deb.debian.org/debian/ unstable main" >/etc/apt/sources.list.d/unstable.list
+	printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' >/etc/apt/preferences.d/limit-unstable
 	apt update
 	apt install -y wireguard-tools iptables iptables-persistent
 	apt install -y linux-headers-$(uname -r)
@@ -53,7 +55,7 @@ SERVER_PUB_KEY=$(echo "$SERVER_PRIV_KEY" | wg pubkey)
 # Save WireGuard settings
 echo "SERVER_PUB_NIC=$SERVER_PUB_NIC
 SERVER_WG_NIC=wg0
-SERVER_WG_IPV4=172.16.7.1
+SERVER_WG_IPV4=192.168.13.0
 SERVER_PORT=7070
 SERVER_PRIV_KEY=$SERVER_PRIV_KEY
 SERVER_PUB_KEY=$SERVER_PUB_KEY" >/etc/wireguard/params
@@ -68,7 +70,7 @@ PrivateKey = $SERVER_PRIV_KEY
 PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o $SERVER_PUB_NIC -j MASQUERADE;
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o $SERVER_PUB_NIC -j MASQUERADE;" >>"/etc/wireguard/wg0.conf"
 
-iptables -t nat -I POSTROUTING -s 172.16.7.1/24 -o $SERVER_PUB_NIC -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 192.168.13.1/24 -o $SERVER_PUB_NIC -j MASQUERADE
 iptables -I INPUT 1 -i wg0 -j ACCEPT
 iptables -I FORWARD 1 -i $SERVER_PUB_NIC -o wg0 -j ACCEPT
 iptables -I FORWARD 1 -i wg0 -o $SERVER_PUB_NIC -j ACCEPT
