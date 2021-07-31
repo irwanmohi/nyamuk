@@ -142,6 +142,7 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/nginx.conf"
 mkdir -p /home/vps/public_html
+echo "<pre>Premium Script By MyTeam Phreaker</pre>" > /home/vps/public_html/index.html
 wget -q -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/vps.conf"
 /etc/init.d/nginx restart
 
