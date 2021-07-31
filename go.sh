@@ -146,17 +146,14 @@ zipRoot() {
         NR != 1 {
             prefix_len = length(prefix);
             cur_len = length($4);
-
             for (len = prefix_len < cur_len ? prefix_len : cur_len; len >= 1; len -= 1) {
                 sub_prefix = substr(prefix, 1, len);
                 sub_cur = substr($4, 1, len);
-
                 if (sub_prefix == sub_cur) {
                     prefix = sub_prefix;
                     break;
                 }
             }
-
             if (len == 0) {
                 prefix = "";
                 nextfile;
@@ -328,7 +325,6 @@ installInitScript(){
 Description=V2Ray Service
 Documentation=https://www.v2ray.com/ https://www.v2fly.org/
 After=network.target nss-lookup.target
-
 [Service]
 Type=simple
 User=root
@@ -337,7 +333,6 @@ AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
 ExecStart=/usr/bin/v2ray/v2ray -config /etc/v2ray/config.json
 Restart=on-failure
-
 [Install]
 WantedBy=multi-user.target
 EOF
