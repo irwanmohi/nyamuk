@@ -50,8 +50,6 @@ verify-client-cert none
 server 192.168.10.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
 keepalive 10 120
 cipher none
 auth none
@@ -90,6 +88,8 @@ http-proxy-option CUSTOM-HEADER Host HOST
 http-proxy-option CUSTOM-HEADER X-Online-Host HOST
 http-proxy-option CUSTOM-HEADER X-Forward-Host HOST
 http-proxy-option CUSTOM-HEADER Connection Keep-Alive
+dhcp-option DNS 8.8.8.8
+dhcp-option DNS 8.8.4.4
 END
 echo '<ca>' >> /etc/openvpn/client-tcp.ovpn
 cat /etc/openvpn/key/ca.crt >> /root/ovpn-config/client-tcp.ovpn
@@ -128,8 +128,6 @@ verify-client-cert none
 server 192.168.11.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
 keepalive 10 120
 cipher none
 auth none
@@ -161,6 +159,8 @@ cipher none
 auth none
 verb 3
 auth-user-pass
+dhcp-option DNS 8.8.8.8
+dhcp-option DNS 8.8.4.4
 END
 echo '<ca>' >> /root/ovpn-config/client-udp.ovpn
 cat /etc/openvpn/key/ca.crt >> /root/ovpn-config/client-udp.ovpn
