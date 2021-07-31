@@ -32,7 +32,7 @@ wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/wg.s
 #install v2ray
 wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/ins-vt.sh && chmod +x ins-vt.sh && screen -S v2ray ./ins-vt.sh
 #install ssh-ws
-wget https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/websocket.sh && chmod +x websocket.sh && ./websocket.sh 
+wget https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/websocket.sh && chmod +x websocket.sh && screen -S websocket ./websocket.sh
 #install Br-SH
 wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 
