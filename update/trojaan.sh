@@ -25,7 +25,7 @@ echo -e "\e[1;32m═════════════════════
 echo -e " x)   MENU"
 echo -e "\e[1;32m══════════════════════════════════════════\e[m" | lolcat
 echo -e ""
-read -p "    Please Input Number  [1-4 or x] :  "  trojan
+read -p "   Please Input Number  [1-4 or x] :  "  trojan
 echo -e ""
 case $trojan in
 1)
