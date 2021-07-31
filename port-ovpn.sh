@@ -34,76 +34,69 @@ exit 0
 fi
 cek=$(netstat -nutlp | grep -w $vpn)
 if [[ -z $cek ]]; then
-rm -f /etc/openvpn/server/server-tcp-$ovpn.conf
-rm -f /etc/openvpn/client-tcp-$ovpn.ovpn
-rm -f /home/vps/public_html/client-tcp-$ovpn.ovpn
-cat > /etc/openvpn/server/server-tcp-$vpn.conf<<END
+rm -f /etc/openvpn/server-tcp.conf
+rm -f /root/ovpn-config/client-tcp.ovpn
+rm -f /home/vps/public_html/client-tcp.ovpn
+cat > /etc/openvpn/server-tcp.conf<<END
+verb 3
 port $vpn
 proto tcp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca key/ca.crt
+cert key/server.crt
+key key/server.key
+dh key/dh.pem
 verify-client-cert none
-username-as-common-name
-key-direction 0
-plugin /etc/openvpn/plugins/openvpn-plugin-auth-pam.so login
 server 192.168.10.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "route-method exe"
-push "route-delay 2"
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
 keepalive 10 120
-comp-lzo
+cipher none
+auth none
 user nobody
 group nogroup
 persist-key
 persist-tun
-status openvpn-status.log
-log tcp.log
-verb 2
+status /var/log/openvpn/openvpn-status.log
+log /var/log/openvpn/openvpn.log
+verb 3
+mute 10
+plugin openvpn-plugin-auth-pam.so login
+username-as-common-name
 ncp-disable
-cipher none
-auth none
 END
-cat > /etc/openvpn/client-tcp-$vpn.ovpn <<-END
+cat > /root/ovpn-config/client-tcp.ovpn <<-END
 # My Team VPN Premium Script
 # Thanks for using this script, Enjoy Highspeed OpenVPN Service
 client
 dev tun
 proto tcp
 remote $MYIP $vpn
-remote-cert-tls server
-connect-retry infinite
 resolv-retry infinite
 nobind
 persist-key
 persist-tun
-auth-user-pass
-auth none
-auth-nocache
+remote-cert-tls server
 cipher none
-comp-lzo
-redirect-gateway def1
-setenv CLIENT_CERT 0
-reneg-sec 0
-verb 1
+auth none
+verb 3
+auth-user-pass
+http-proxy-retry
 http-proxy $MYIP 8080
-http-proxy-option VERSION 1.1
-http-proxy-option AGENT Chrome/80.0.3987.87
-http-proxy-option CUSTOM-HEADER Host bug.com
-http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
-http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
-http-proxy-option CUSTOM-HEADER Referrer bug.com
-dhcp-option DNS 8.8.8.8
-dhcp-option DNS 8.8.4.4
+http-proxy-option CUSTOM-HEADER Protocol HTTP/1.1
+http-proxy-option CUSTOM-HEADER Host HOST
+http-proxy-option CUSTOM-HEADER X-Online-Host HOST
+http-proxy-option CUSTOM-HEADER X-Forward-Host HOST
+http-proxy-option CUSTOM-HEADER Connection Keep-Alive
 END
-echo '<ca>' >> /etc/openvpn/client-tcp-$vpn.ovpn
-cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-tcp-$vpn.ovpn
-echo '</ca>' >> /etc/openvpn/client-tcp-$vpn.ovpn
-cp /etc/openvpn/client-tcp-$vpn.ovpn /home/vps/public_html/client-tcp-$vpn.ovpn
-systemctl disable --now openvpn-server@server-tcp-$ovpn > /dev/null
-systemctl enable --now openvpn-server@server-tcp-$vpn > /dev/null
+echo '<ca>' >> /etc/openvpn/client-tcp.ovpn
+cat /etc/openvpn/key/ca.crt >> /root/ovpn-config/client-tcp.ovpn
+echo '</ca>' >> /root/ovpn-config/client-tcp.ovpn
+cp /root/ovpn-config/client-tcp.ovpn /home/vps/public_html/client-tcp.ovpn
+systemctl disable --now openvpn@server-tcp > /dev/null
+systemctl enable --now openvpn@server-tcp > /dev/null
 sed -i "s/   - OpenVPN                 : TCP $ovpn, UDP $ovpn2, SSL 442/   - OpenVPN                 : TCP $vpn, UDP $ovpn2, SSL 442/g" /root/log-install.txt
 sed -i "s/$ovpn/$vpn/g" /etc/stunnel/stunnel.conf
 echo -e "\e[032;1mPort $vpn modified successfully\e[0m"
@@ -119,70 +112,64 @@ exit 0
 fi
 cek=$(netstat -nutlp | grep -w $vpn)
 if [[ -z $cek ]]; then
-rm -f /etc/openvpn/server/server-udp-$ovpn2.conf
-rm -f /etc/openvpn/client-udp-$ovpn2.ovpn
-rm -f /home/vps/public_html/client-tcp-$ovpn2.ovpn
-cat > /etc/openvpn/server/server-udp-$vpn.conf<<END
+rm -f /root/ovpn-config/client-udp.ovpn
+rm -f /etc/openvpn/server-udp.conf
+rm -f /home/vps/public_html/client-udp.ovpn
+cat > /etc/openvpn/server-udp.conf<<END
+verb 3
 port $vpn
 proto udp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca key/ca.crt
+cert key/server.crt
+key key/server.key
+dh key/dh.pem
 verify-client-cert none
-username-as-common-name
-key-direction 0
-plugin /etc/openvpn/plugins/openvpn-plugin-auth-pam.so login
 server 192.168.11.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "route-method exe"
-push "route-delay 2"
+push "redirect-gateway def1 bypass-dhcp"
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
 keepalive 10 120
-comp-lzo
+cipher none
+auth none
 user nobody
 group nogroup
 persist-key
 persist-tun
-status openvpn-status.log
-log udp.log
-verb 2
+status /var/log/openvpn/openvpn-status.log
+log /var/log/openvpn/openvpn.log
+verb 3
+mute 10
+plugin openvpn-plugin-auth-pam.so login
+username-as-common-name
 ncp-disable
-cipher none
-auth none
 END
-cat > /etc/openvpn/client-udp-$vpn.ovpn <<-END
+cat > /root/ovpn-config/client-udp.ovpn <<-END
 # My Team VPN Premium Script
 # Thanks for using this script, Enjoy Highspeed OpenVPN Service
 client
 dev tun
 proto udp
 remote $MYIP $vpn
-remote-cert-tls server
 resolv-retry infinite
-float
-fast-io
 nobind
 persist-key
-persist-remote-ip
 persist-tun
-auth-user-pass
-auth none
-auth-nocache
+remote-cert-tls server
 cipher none
-comp-lzo
-redirect-gateway def1
-setenv CLIENT_CERT 0
-reneg-sec 0
-verb 1
+auth none
+verb 3
+auth-user-pass
 END
-echo '<ca>' >> /etc/openvpn/client-udp-$vpn.ovpn
-cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-udp-$vpn.ovpn
-echo '</ca>' >> /etc/openvpn/client-udp-$vpn.ovpn
-cp /etc/openvpn/client-udp-$vpn.ovpn /home/vps/public_html/client-udp-$vpn.ovpn
-systemctl disable --now openvpn-server@server-udp-$ovpn2 > /dev/null
-systemctl enable --now openvpn-server@server-udp-$vpn > /dev/null
-sed -i "s/   - OpenVPN                 : TCP $ovpn, UDP $ovpn2, SSL 442/   - OpenVPN                 : TCP $ovpn, UDP $vpn, SSL 442/g" /root/log-install.txt
+echo '<ca>' >> /root/ovpn-config/client-udp.ovpn
+cat /etc/openvpn/key/ca.crt >> /root/ovpn-config/client-udp.ovpn
+echo '</ca>' >> /root/ovpn-config/client-udp.ovpn
+cp /root/ovpn-config/client-udp.ovpn /home/vps/public_html/client-udp.ovpn
+systemctl disable --now openvpn@server-udp > /dev/null
+systemctl enable --now openvpn@server-udp > /dev/null
+sed -i "s/   - OpenVPN                 : TCP $ovpn, UDP $ovpn2, SSL 442/   - OpenVPN                 : TCP $vpn, UDP $ovpn2, SSL 442/g" /root/log-install.txt
+sed -i "s/$ovpn/$vpn/g" /etc/stunnel/stunnel.conf
 echo -e "\e[032;1mPort $vpn modified successfully\e[0m"
 else
 echo "Port $vpn is used"
