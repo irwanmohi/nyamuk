@@ -37,10 +37,13 @@ systemctl enable --now openvpn-server@server-udp-2200
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 
+# Removing all existing openvpn server files
+rm -rf /etc/openvpn/*
 rm -f /etc/openvpn/server/server-tcp-1194.conf
 rm -f /etc/openvpn/client-tcp-1194.ovpn
 rm -f /home/vps/public_html/client-tcp-1194.ovpn
 cat > /etc/openvpn/server/server-tcp-1194.conf<<END
+# OpenVPN TCP
 port 1194
 proto tcp
 dev tun
@@ -48,35 +51,59 @@ ca ca.crt
 cert server.crt
 key server.key
 dh dh2048.pem
-plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
-server 192.168.1.0 255.255.255.0
+key-direction 0
+plugin /etc/openvpn/plugins/openvpn-plugin-auth-pam.so login
+server 192.168.10.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
-keepalive 5 30
+push "route-method exe"
+push "route-delay 2"
+keepalive 10 120
 comp-lzo
+user nobody
+group nogroup
 persist-key
 persist-tun
-status openvpn-tcp.log
-verb 3
+status openvpn-status.log
+log tcp.log
+verb 2
+ncp-disable
+cipher none
+auth none
 END
 cat > /etc/openvpn/client-tcp-1194.ovpn <<-END
+# My Team VPN Premium Script
+# Thanks for using this script, Enjoy Highspeed OpenVPN Service
 client
 dev tun
 proto tcp
+setenv FRIENDLY_NAME "MyteamTcp"
 remote $MYIP 1194
+remote-cert-tls server
+connect-retry infinite
 resolv-retry infinite
-route-method exe
 nobind
 persist-key
 persist-tun
 auth-user-pass
+auth none
+auth-nocache
+cipher none
 comp-lzo
-dhcp-option DNS 192.168.1.1
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
+verb 1
+http-proxy $MYIP 8080
+http-proxy-option VERSION 1.1
+http-proxy-option AGENT Chrome/80.0.3987.87
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
+http-proxy-option CUSTOM-HEADER Referrer bug.com
 dhcp-option DNS 8.8.8.8
 dhcp-option DNS 8.8.4.4
-verb 3
 END
 echo '<ca>' >> /etc/openvpn/client-tcp-1194.ovpn
 cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-tcp-1194.ovpn
@@ -89,6 +116,7 @@ rm -f /etc/openvpn/server/server-udp-2200.conf
 rm -f /etc/openvpn/client-udp-2200.ovpn
 rm -f /home/vps/public_html/client-tcp-2200.ovpn
 cat > /etc/openvpn/server/server-udp-2200.conf<<END
+# OpenVPN UDP
 port 2200
 proto udp
 dev tun
@@ -96,36 +124,52 @@ ca ca.crt
 cert server.crt
 key server.key
 dh dh2048.pem
-plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
-server 192.168.2.0 255.255.255.0
+key-direction 0
+plugin /etc/openvpn/plugins/openvpn-plugin-auth-pam.so login
+server 192.168.11.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
-keepalive 5 30
+push "route-method exe"
+push "route-delay 2"
+keepalive 10 120
 comp-lzo
+user nobody
+group nogroup
 persist-key
 persist-tun
-status openvpn-udp.log
-verb 3
-explicit-exit-notify
+status openvpn-status.log
+log udp.log
+verb 2
+ncp-disable
+cipher none
+auth none
 END
 cat > /etc/openvpn/client-udp-2200.ovpn <<-END
+# My Team VPN Premium Script
+# Thanks for using this script, Enjoy Highspeed OpenVPN Service
 client
 dev tun
 proto udp
+setenv FRIENDLY_NAME "MyTeamUdp"
 remote $MYIP 2200
+remote-cert-tls server
 resolv-retry infinite
-route-method exe
+float
+fast-io
 nobind
 persist-key
+persist-remote-ip
 persist-tun
 auth-user-pass
+auth none
+auth-nocache
+cipher none
 comp-lzo
-verb 3
-dhcp-option DNS 192.168.1.1
-dhcp-option DNS 8.8.8.8
-dhcp-option DNS 8.8.4.4
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
+verb 1
 END
 echo '<ca>' >> /etc/openvpn/client-udp-2200.ovpn
 cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-udp-2200.ovpn
@@ -140,8 +184,13 @@ cp /etc/openvpn/client-tcp-1194.ovpn /home/vps/public_html/client-tcp-1194.ovpn
 # Copy config OpenVPN client ke home directory root agar mudah didownload ( UDP 2200 )
 cp /etc/openvpn/client-udp-2200.ovpn /home/vps/public_html/udp.ovpn
 
-iptables -t nat -I POSTROUTING -s 192.168.1.0/24 -o $ANU -j MASQUERADE
-iptables -t nat -I POSTROUTING -s 192.168.2.0/24 -o $ANU -j MASQUERADE
+cd
+wget https://github.com/LolLloLlLolLlLolL-rgb/nyamuk/blob/beta/plugin.tgz
+tar -xzvf /root/plugin.tgz -C /etc/openvpn/
+rm -f plugin.tgz
+
+iptables -t nat -I POSTROUTING -s 192.168.10.0/24 -o $ANU -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 192.168.11.0/24 -o $ANU -j MASQUERADE
 iptables-save > /etc/iptables.up.rules
 chmod +x /etc/iptables.up.rules
 
