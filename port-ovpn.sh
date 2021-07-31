@@ -45,35 +45,58 @@ ca ca.crt
 cert server.crt
 key server.key
 dh dh2048.pem
-plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
-server 192.168.1.0 255.255.255.0
+key-direction 0
+plugin /etc/openvpn/plugins/openvpn-plugin-auth-pam.so login
+server 192.168.10.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
-keepalive 5 30
+push "route-method exe"
+push "route-delay 2"
+keepalive 10 120
 comp-lzo
+user nobody
+group nogroup
 persist-key
 persist-tun
-status openvpn-tcp.log
-verb 3
+status openvpn-status.log
+log tcp.log
+verb 2
+ncp-disable
+cipher none
+auth none
 END
 cat > /etc/openvpn/client-tcp-$vpn.ovpn <<-END
+# My Team VPN Premium Script
+# Thanks for using this script, Enjoy Highspeed OpenVPN Service
 client
 dev tun
 proto tcp
 remote $MYIP $vpn
+remote-cert-tls server
+connect-retry infinite
 resolv-retry infinite
-route-method exe
 nobind
 persist-key
 persist-tun
 auth-user-pass
+auth none
+auth-nocache
+cipher none
 comp-lzo
-dhcp-option DNS 192.168.1.1
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
+verb 1
+http-proxy $MYIP 8080
+http-proxy-option VERSION 1.1
+http-proxy-option AGENT Chrome/80.0.3987.87
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
+http-proxy-option CUSTOM-HEADER Referrer bug.com
 dhcp-option DNS 8.8.8.8
 dhcp-option DNS 8.8.4.4
-verb 3
 END
 echo '<ca>' >> /etc/openvpn/client-tcp-$vpn.ovpn
 cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-tcp-$vpn.ovpn
@@ -107,36 +130,51 @@ ca ca.crt
 cert server.crt
 key server.key
 dh dh2048.pem
-plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
-server 192.168.2.0 255.255.255.0
+key-direction 0
+plugin /etc/openvpn/plugins/openvpn-plugin-auth-pam.so login
+server 192.168.11.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
-keepalive 5 30
+push "route-method exe"
+push "route-delay 2"
+keepalive 10 120
 comp-lzo
+user nobody
+group nogroup
 persist-key
 persist-tun
-status openvpn-udp.log
-verb 3
-explicit-exit-notify
+status openvpn-status.log
+log udp.log
+verb 2
+ncp-disable
+cipher none
+auth none
 END
 cat > /etc/openvpn/client-udp-$vpn.ovpn <<-END
+# My Team VPN Premium Script
+# Thanks for using this script, Enjoy Highspeed OpenVPN Service
 client
 dev tun
 proto udp
 remote $MYIP $vpn
+remote-cert-tls server
 resolv-retry infinite
-route-method exe
+float
+fast-io
 nobind
 persist-key
+persist-remote-ip
 persist-tun
 auth-user-pass
+auth none
+auth-nocache
+cipher none
 comp-lzo
-verb 3
-dhcp-option DNS 192.168.1.1
-dhcp-option DNS 8.8.8.8
-dhcp-option DNS 8.8.4.4
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
+verb 1
 END
 echo '<ca>' >> /etc/openvpn/client-udp-$vpn.ovpn
 cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-udp-$vpn.ovpn
