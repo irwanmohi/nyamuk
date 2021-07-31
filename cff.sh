@@ -1,17 +1,17 @@
 #!/bin/bash
-
-cd /root
-read -e -p " Masukan Domain :$domain" domain
-read -e -p " Masukan Email Cloudflare :" email
-read -e -p " Masukan Api Key :" key
-echo -e "domain=$domain" >> /root/mail.conf
-echo -e "email=$email" >> /root/mail.conf
-echo -e "key=$key" >> /root/mail.conf
 clear
-echo "Done"
+cd /root
+CF_ID=${CF_ID}
+CF_KEY=${CF_KEY}
+read -e -p " Sila masukkan email Cloudflare anda:" CF_ID
+read -e -p " Sila masukkan Api Key Cloudflare anda:" CF_KEY
+echo -e "CF_ID=${CF_ID}" >> /root/mail.conf
+echo -e "CF_KEY=${CF_KEY}" >> /root/mail.conf
+cd
+clear
+echo "DONE...!"
 echo "Your ID Cloudflare"
 echo -e "×××××××××××××××××××××××××××××××××"
-echo "DOMAIN         : $domain"
-echo "Email          : $email"
-echo "Api Key        : $key"
+echo "Email          : ${CF_ID}"
+echo "Api Key        : ${CF_KEY}"
 echo -e "×××××××××××××××××××××××××××××××××"
