@@ -340,6 +340,7 @@ wget -O cfh "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta
 wget -O update "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/update.sh"
 wget -O strt "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/strt.sh"
 wget -O swap "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/swapkvm.sh"
+wget -O autoreboot "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/autoreboot.sh"
 chmod +x add-host
 chmod +x menu
 chmod +x usernew
@@ -373,6 +374,7 @@ chmod +x wbmn
 chmod +x xp
 chmod +x update
 chmod +x strt
+chmod +x autoreboot
 chmod +x swap
 echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 echo "0 0 * * * root xp" >> /etc/crontab
