@@ -99,15 +99,12 @@ dhcp-option DNS 8.8.8.8
 dhcp-option DNS 8.8.4.4
 END
 echo '<ca>' >> /etc/openvpn/client-tcp-1194.ovpn
-cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-tcp-1194.ovpn
+cat /etc/openvpn/key/ca.crt >> /etc/openvpn/client-tcp-1194.ovpn
 echo '</ca>' >> /etc/openvpn/client-tcp-1194.ovpn
 cp /etc/openvpn/client-tcp-1194.ovpn /home/vps/public_html/client-tcp-1194.ovpn
-systemctl disable --now openvpn-server@server-tcp-1194 > /dev/null
-systemctl enable --now openvpn-server@server-tcp-1194 > /dev/null
+systemctl start openvpn@server-tcp
+systemctl enable openvpn@server-tcp
 
-rm -f /etc/openvpn/server/server-udp-2200.conf
-rm -f /etc/openvpn/client-udp-2200.ovpn
-rm -f /home/vps/public_html/client-tcp-2200.ovpn
 cat > /etc/openvpn/server/server-udp-2200.conf<<END
 port 2200
 proto udp
@@ -164,11 +161,11 @@ reneg-sec 0
 verb 1
 END
 echo '<ca>' >> /etc/openvpn/client-udp-2200.ovpn
-cat /etc/openvpn/server/ca.crt >> /etc/openvpn/client-udp-2200.ovpn
+cat /etc/openvpn/key/ca.crt >> /etc/openvpn/client-udp-2200.ovpn
 echo '</ca>' >> /etc/openvpn/client-udp-2200.ovpn
 cp /etc/openvpn/client-udp-2200.ovpn /home/vps/public_html/client-udp-2200.ovpn
-systemctl disable --now openvpn-server@server-udp-2200 > /dev/null
-systemctl enable --now openvpn-server@server-udp-2200 > /dev/null
+systemctl start openvpn@server-udp
+systemctl enable openvpn@server-udp
 
 # Copy config OpenVPN client ke home directory root agar mudah didownload ( TCP 1194 )
 cp /etc/openvpn/client-tcp-1194.ovpn /home/vps/public_html/client-tcp-1194.ovpn
