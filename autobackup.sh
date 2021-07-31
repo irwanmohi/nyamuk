@@ -12,7 +12,6 @@ echo -e "${red}Permission Denied!${NC}";
 echo "Only For Premium Users"
 exit 0
 fi
-Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[ON]${Font_color_suffix}"
 Error="${Red_font_prefix}[OFF]${Font_color_suffix}"
 cek=$(grep -c -E "^# BEGIN_Backup" /etc/crontab)
@@ -40,7 +39,7 @@ sleep 1
 echo " Please Wait"
 clear
 echo " Autobackup Has Been Started"
-echo " Data Will Be Backed Up Automatically at 00:05 GMT +7"
+echo " Data Will Be Backed Up Automatically at 00:05 GMT +8"
 exit 0
 }
 function stop() {
@@ -55,9 +54,9 @@ echo " Autobackup Has Been Stopped"
 exit 0
 }
 clear
-echo -e " ×××××××××××××××××××××××××××××××××××××××"
+echo -e " ××××××××××××××××××××××××××××××"
 echo -e "         Autobackup Data       "
-echo -e " ×××××××××××××××××××××××××××××××××××××××"
+echo -e " ××××××××××××××××××××××××××××××"
 echo -e " Status $sts"
 echo -e "  1. Start Autobackup"
 echo -e "  2. Stop Autobackup"
