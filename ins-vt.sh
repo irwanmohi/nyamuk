@@ -485,7 +485,7 @@ systemctl start v2ray@vnone.service
 systemctl restart trojan
 systemctl enable trojan
 systemctl restart v2ray
-systemctl enable v2ray
+systemctl enable v2ra
 cd /usr/bin
 wget -O add-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/add-ws.sh"
 wget -O add-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/add-vless.sh"
@@ -510,10 +510,9 @@ chmod +x cek-ws
 chmod +x cek-vless
 chmod +x cek-tr
 chmod +x renew-ws
-chmod +x renew-vless
+cmod +x renew-vless
 chmod +x renew-tr
 chmod +x certv2ray
 cd
 rm -f ins-vt.sh
 mv /root/domain /etc/v2ray
-
