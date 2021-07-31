@@ -8,15 +8,6 @@ NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
 
-#detail nama syarikat
-country=ID
-state=Malaysia
-locality=Malaysia
-organization=www.cvpn.ovh
-organizationalunit=www.cvpn.ovh
-commonname=www.cvpn.ovh
-email=myteam@cvpn.ovh
-
 # simple password minimal
 wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/password"
 chmod +x /etc/pam.d/common-password
@@ -120,7 +111,7 @@ apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rs
 echo "clear" >> .profile
 echo "neofetch" >> .profile
 echo "echo BY MYTEAM SCRIPT" >> .profile
-echo "echo PREMIUM VPS SCRIPT V4" >> .profile
+echo "echo PREMIUM VPS SCRIPT STABLE" >> .profile
 
 # install webserver
 apt -y install nginx
@@ -163,7 +154,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 
 # install squid
 cd
-apt -y install squid3
+apt -y install squid
 wget -q -O /etc/squid/squid.conf "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
