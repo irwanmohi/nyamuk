@@ -334,6 +334,9 @@ wget -O port-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/
 wget -O port-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-vless.sh"
 wget -O wbmn "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/webmin.sh"
 wget -O xp "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/xp.sh"
+wget -O /usr/bin/user-limit https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/user-limit.sh && chmod +x /usr/bin/user-limit
+wget -O cff "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cff.sh"
+wget -O cfh "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cfh.sh"
 wget -O update "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/update.sh"
 wget -O strt "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/strt.sh"
 wget -O swap "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/swapkvm.sh"
@@ -363,6 +366,9 @@ chmod +x port-tr
 chmod +x port-squid
 chmod +x port-ws
 chmod +x port-vless
+chmod +x user-limit
+chmod +x cff
+chmod +x cfh
 chmod +x wbmn
 chmod +x xp
 chmod +x update
