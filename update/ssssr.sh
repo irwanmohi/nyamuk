@@ -29,7 +29,7 @@ echo -e "\e[1;32m═════════════════════
 echo -e " x)   MENU"
 echo -e "\e[1;32m══════════════════════════════════════════\e[m" | lolcat
 echo -e ""
-read -p "    Please Input Number  [1-8 or x] :  "  ssssr
+read -p "   Please Input Number  [1-8 or x] :  "  ssssr
 echo -e ""
 case $ssssr in
 1)
