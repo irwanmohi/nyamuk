@@ -25,7 +25,7 @@ echo -e "\e[1;32m═════════════════════
 echo -e " x)   MENU"
 echo -e "\e[1;32m══════════════════════════════════════════\e[m" | lolcat
 echo -e ""
-read -p "     Please Input Number  [1-4 or x] :  "  vless
+read -p "   Please Input Number  [1-4 or x] :  "  vless
 echo -e ""
 case $vless in
 1)
