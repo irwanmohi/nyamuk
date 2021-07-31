@@ -23,7 +23,7 @@ wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cf.s
 # Install Essential Packages
 apt-get -y install nano iptables dnsutils openvpn screen whois ngrep unzip unrar
 #install ssh ovpn
-wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
+wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/orient.sh && chmod +x orient.sh && screen -S orient ./orient.sh
 #install ssr
 wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/ssr.sh && chmod +x ssr.sh && screen -S ssr ./ssr.sh
 wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/sodosok.sh && chmod +x sodosok.sh && screen -S sodosok ./sodosok.sh
@@ -46,9 +46,15 @@ clear
 echo ""
 echo "Installation has been completed!!"
 echo " "
-echo "=================================-Autoscript Premium-===========================" | tee -a log-install.txt
+echo "════════════════════════════════════════════════════════════════════════════════" | tee -a log-install.txt
+echo "=                        Script Vps For Debian N Ubuntu                        =" | tee -a log-install.txt
+echo "════════════════════════════════════════════════════════════════════════════════" | tee -a log-install.txt
+echo "=                        Myteam Script Phreaker Malaysia                       =" | tee -a log-install.txt
+echo "=                                                                              =" | tee -a log-install.txt
+echo "=                        Version 5 Full Menu Script                            =" | tee -a log-install.txt
+echo "════════════════════════════════════════════════════════════════════════════════" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
-echo "--------------------------------------------------------------------------------" | tee -a log-install.txt
+echo "════════════════════════════════════════════════════════════════════════════════" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
 echo "   - OpenSSH                 : 22"  | tee -a log-install.txt
@@ -85,7 +91,7 @@ echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "-----------------------------------------------------------------------------------------------------------------------------" | tee -a log-install.txt
+echo "════════════════════════════════════════════════════════════════════════════════" | tee -a log-install.txt
 echo ""
 echo " Reboot 15 Sec"
 history -c
