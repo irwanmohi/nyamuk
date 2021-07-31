@@ -14,14 +14,13 @@ defaults
 tls on
 tls_starttls on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
-
 account default
 host smtp.gmail.com
 port 587
 auth on
-user email akuvps
-from email akuvps@gmail.com
-password Danios-142001
+user email kalian@gmail.com
+from email kaliN@gmail.com
+password password 
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
