@@ -53,4 +53,3 @@ echo " ××××××××××××××××××××××××××××"
 echo " Client Name : $user"
 echo " Expired  On: $exp4"
 echo " ××××××××××××××××××××××××××××"
-clear
