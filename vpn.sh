@@ -188,6 +188,47 @@ systemctl enable --now openvpn-server@server-udp-2200
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 
+# Configure UFW
+apt-get install -y ufw
+echo "" >> /etc/ufw/before.rules
+echo "# START OPENVPN RULES" >> /etc/ufw/before.rules
+echo "# NAT table rules" >> /etc/ufw/before.rules
+echo "*nat" >> /etc/ufw/before.rules
+echo ":POSTROUTING ACCEPT [0:0]" >> /etc/ufw/before.rules
+echo "# Allow traffic from OpenVPN client to eth0" >> /etc/ufw/before.rules
+echo "-I POSTROUTING -s 192.168.10.0/24 -o eth0 -j MASQUERADE" >> /etc/ufw/before.rules
+echo "-I POSTROUTING -s 192.168.11.0/24 -o eth0 -j MASQUERADE" >> /etc/ufw/before.rules
+echo "COMMIT" >> /etc/ufw/before.rules
+echo "# END OPENVPN RULES" >> /etc/ufw/before.rules
+sed -i 's|DEFAULT_FORWARD_POLICY="DROP"|DEFAULT_FORWARD_POLICY="ACCEPT"|g' /etc/default/ufw
+sed -i "s|IPV6=yes|IPV6=no|g" /etc/default/ufw
+ufw allow 22
+ufw allow 143
+ufw allow 109
+ufw allow 8080
+ufw allow 8181
+ufw allow 8888
+ufw allow 8180
+ufw allow 8000
+ufw allow 1194
+ufw allow 2200
+ufw allow 81
+ufw allow 444
+ufw allow 666
+ufw allow 442
+ufw allow 443
+ufw allow 500
+ufw allow 888
+ufw allow 880
+ufw allow 550
+ufw allow 7070
+ufw allow 1443:1543
+ufw allow 2443:2543
+ufw allow 3443:3543
+ufw disable
+echo "y" | ufw enable
+ufw reload
+
 iptables -t nat -I POSTROUTING -s 192.168.10.0/24 -o $ANU -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 192.168.11.0/24 -o $ANU -j MASQUERADE
 iptables-save > /etc/iptables.up.rules
