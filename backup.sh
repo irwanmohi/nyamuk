@@ -12,7 +12,8 @@ echo -e "${red}Permission Denied!${NC}";
 echo "Only For Premium Users"
 exit 0
 fi
-IP=$(wget -qO- ifconfig.me/ip);
+MYIP=$(wget -qO- icanhazip.com);
+IP=$(wget -qO- icanhazip.com);
 date=$(date +"%Y-%m-%d")
 clear
 echo " Enter Your Email To Receive Message"
