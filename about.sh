@@ -1,0 +1,23 @@
+#!/bin/bash
+
+clear
+echo -e "================================================="
+echo -e "#                MYTEAM SCRIPT                  #"
+echo -e "#-----------------------------------------------#"
+echo -e "# For Debian 9 & Debian 10 64 bit               #"
+echo -e "# For Ubuntu 18.04 & Ubuntu 20.04 64 bit        #"
+echo -e "# For VPS with KVM and VMWare virtualization    #"
+echo -e "# Build Up By MYTEAM                            #"
+echo -e "#-----------------------------------------------#"
+echo -e "# Thanks To                                     #"
+echo -e "#-----------------------------------------------#"
+echo -e "# MYTEAM                                        #"
+echo -e "# ALLAH S.W.T                                   #"
+echo -e "# My Family                                     #"
+echo -e "# Google                                        #"
+echo -e "# Admin Portal & White Vps                      #"
+echo -e "# CVPN.OVH                                      #"
+echo -e "#                                               #"
+echo -e "#-----------------------------------------------#"
+echo -e "             MULTIMEDIA IT STUDENT              #"
+echo -e "================================================="
