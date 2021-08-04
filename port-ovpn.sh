@@ -38,7 +38,6 @@ rm -f /etc/openvpn/server-tcp.conf
 rm -f /root/ovpn-config/client-tcp.ovpn
 rm -f /home/vps/public_html/client-tcp.ovpn
 cat > /etc/openvpn/server-tcp.conf<<END
-verb 3
 port $vpn
 proto tcp
 dev tun
@@ -47,23 +46,25 @@ cert key/server.crt
 key key/server.key
 dh key/dh.pem
 verify-client-cert none
-server 192.168.10.0 255.255.255.0
+server 172.29.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1 bypass-dhcp"
+push "redirect-gateway def1"
 keepalive 10 120
-cipher none
-auth none
-user nobody
-group nogroup
 persist-key
 persist-tun
+persist-remote-ip
+ncp-disable
+duplicate-cn
+cipher none
+auth none
 status /var/log/openvpn/openvpn-status.log
 log /var/log/openvpn/openvpn.log
 verb 3
 mute 10
 plugin openvpn-plugin-auth-pam.so login
 username-as-common-name
-ncp-disable
+socket-flags TCP_NODELAY
+push "socket-flags TCP_NODELAY"
 END
 cat > /root/ovpn-config/client-tcp.ovpn <<-END
 # My Team VPN Premium Script
@@ -116,7 +117,6 @@ rm -f /root/ovpn-config/client-udp.ovpn
 rm -f /etc/openvpn/server-udp.conf
 rm -f /home/vps/public_html/client-udp.ovpn
 cat > /etc/openvpn/server-udp.conf<<END
-verb 3
 port $vpn
 proto udp
 dev tun
@@ -125,23 +125,25 @@ cert key/server.crt
 key key/server.key
 dh key/dh.pem
 verify-client-cert none
-server 192.168.11.0 255.255.255.0
+server 172.29.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1 bypass-dhcp"
+push "redirect-gateway def1"
 keepalive 10 120
-cipher none
-auth none
-user nobody
-group nogroup
 persist-key
 persist-tun
+persist-remote-ip
+ncp-disable
+duplicate-cn
+cipher none
+auth none
 status /var/log/openvpn/openvpn-status.log
 log /var/log/openvpn/openvpn.log
 verb 3
 mute 10
 plugin openvpn-plugin-auth-pam.so login
 username-as-common-name
-ncp-disable
+socket-flags TCP_NODELAY
+push "socket-flags TCP_NODELAY"
 END
 cat > /root/ovpn-config/client-udp.ovpn <<-END
 # My Team VPN Premium Script
