@@ -24,9 +24,8 @@ sleep 3;clear
 rm /usr/bin/darknet
 cat> /usr/bin/darknet << END
 #!/bin/bash
-screen -dmS dropbear ohpserver -port 8180 -proxy 127.0.0.1:8181 -tunnel 127.0.0.1:143
-screen -dmS openvpn ohpserver -port 8188 -proxy 127.0.0.1:8181 -tunnel 127.0.0.1:1194
-screen -dmS tls ohpserver -port 8844 -proxy 127.0.0.1:8181 -tunnel 127.0.0.1:444
+screen -dmS dropbear ohpserver -port 8090 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:143
+screen -dmS openvpn ohpserver -port 8089 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:1194
 END
 chmod +x /usr/bin/darknet
 else
@@ -34,9 +33,8 @@ echo -e "adding darknet for ohpserver"
 sleep 3;clear
 cat> /usr/bin/darknet << END
 #!/bin/bash
-screen -dmS dropbear ohpserver -port 8180 -proxy 127.0.0.1:8181 -tunnel 127.0.0.1:143
-screen -dmS openvpn ohpserver -port 8188 -proxy 127.0.0.1:8181 -tunnel 127.0.0.1:1194
-screen -dmS tls ohpserver -port 8844 -proxy 127.0.0.1:8181 -tunnel 127.0.0.1:444
+screen -dmS dropbear ohpserver -port 8090 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:143
+screen -dmS openvpn ohpserver -port 8089 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:1194
 END
 chmod +x /usr/bin/darknet
 fi
@@ -66,9 +64,8 @@ rm /root/log-ohp.txt
 echo -e "Installation has been completed!!"
 echo ""
 echo ""
-echo "DROPBEAR : 8180" | tee -a log-ohp.txt
-echo "Openvpn Non : 8188" | tee -a log-ohp.txt
-echo "STUNNEL : 8844" | tee -a log-ohp.txt
+echo "DROPBEAR : 8090" | tee -a log-ohp.txt
+echo "Openvpn Non : 8089" | tee -a log-ohp.txt
 echo ""
 echo ""
 read -n 1 -r -s -p $'Press any key to reboot...\n';reboot
@@ -76,9 +73,8 @@ else
 echo -e "Installation has been completed!!"
 echo ""
 echo ""
-echo "DROPBEAR : 8180" | tee -a log-ohp.txt
-echo "Openvpn Non : 8188" | tee -a log-ohp.txt
-echo "STUNNEL : 8844" | tee -a log-ohp.txt
+echo "DROPBEAR : 8090" | tee -a log-ohp.txt
+echo "Openvpn Non : 8089" | tee -a log-ohp.txt
 echo ""
 echo ""
 read -n 1 -r -s -p $'Press any key to reboot...\n';reboot
