@@ -56,6 +56,7 @@ ExecStart=/usr/bin/darknet
 WantedBy=multi-user.target
 END
 systemctl daemon-reload
+service darknet start
 systemctl enable darknet
 fi
 
