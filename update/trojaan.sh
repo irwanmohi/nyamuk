@@ -13,6 +13,8 @@ echo "Only For Premium Users"
 exit 0
 fi
 clear
+echo -e ""
+cat /usr/bin/bannerku | lolcat
 echo -e "\e[32m════════════════════════════════════════\e[m" | lolcat
 echo -e "             ═══[Trojan]═══"
 echo -e "\e[32m════════════════════════════════════════\e[m" | lolcat
