@@ -24,8 +24,8 @@ sleep 3;clear
 rm /usr/bin/darknet
 cat> /usr/bin/darknet << END
 #!/bin/bash
-screen -dmS dropbear ohpserver -port 8090 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:143
-screen -dmS openvpn ohpserver -port 8089 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:1194
+screen -dmS dropbear ohpserver -port 8090 -proxy 101.99.84.117:8080 -tunnel 101.99.84.117:143
+screen -dmS openvpn ohpserver -port 8089 -proxy 101.99.84.117:8080 -tunnel 101.99.84.117:1194
 END
 chmod +x /usr/bin/darknet
 else
@@ -33,8 +33,8 @@ echo -e "adding darknet for ohpserver"
 sleep 3;clear
 cat> /usr/bin/darknet << END
 #!/bin/bash
-screen -dmS dropbear ohpserver -port 8090 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:143
-screen -dmS openvpn ohpserver -port 8089 -proxy 101.99.84.117:8181 -tunnel 101.99.84.117:1194
+screen -dmS dropbear ohpserver -port 8090 -proxy 101.99.84.117:8080 -tunnel 101.99.84.117:143
+screen -dmS openvpn ohpserver -port 8089 -proxy 101.99.84.117:8080 -tunnel 101.99.84.117:1194
 END
 chmod +x /usr/bin/darknet
 fi
