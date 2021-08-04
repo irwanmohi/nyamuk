@@ -47,7 +47,7 @@ fi
 
 # adding darknet service for running
 if [[ -e /etc/systemd/system/darknet.service  ]]; then
-echo -e "maxis service already adding"
+echo -e "darknet service already adding"
 sleep 3;clear
 else
 echo -e "adding darknet service for running"
