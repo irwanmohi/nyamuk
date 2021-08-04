@@ -14,6 +14,7 @@ exit 0
 fi
 clear
 echo -e ""
+cat /usr/bin/bannerku | lolcat
 echo -e "\e[1;32m═════════════════════════════════════════\e[m" | lolcat
 echo -e "          \e[1;31m\e[1;31m═[\e[mSSH & OpenVPN Menu\e[1;31m]═\e[m" 
 echo -e "\e[1;32m═════════════════════════════════════════\e[m" | lolcat
