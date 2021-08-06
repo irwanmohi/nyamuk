@@ -60,8 +60,8 @@ echo "</ca>" >> /root/ovpn-config/client-udp.ovpn
 cp /root/ovpn-config/client-tcp.ovpn /home/vps/public_html/client-tcp.ovpn
 cp /root/ovpn-config/client-udp.ovpn /home/vps/public_html/client-udp.ovpn
 
-iptables -t nat -I POSTROUTING -s 172.29.0.0/24 -o eth0 -j MASQUERADE
-iptables -t nat -I POSTROUTING -s 172.29.1.0/24 -o eth0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 10.6.0.0/24 -o eth0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 10.7.0.0/24 -o eth0 -j MASQUERADE
 iptables-save > /etc/iptables.up.rules
 chmod +x /etc/iptables.up.rules
 
