@@ -11,7 +11,7 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 ANU=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 
 # Install OpenVPN dan Easy-RSA
-apt-get install -y openvpn3
+apt-get install -y openvpn
 wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/EasyRSA-3.0.8.tgz
 tar xvf EasyRSA-3.0.8.tgz
 rm EasyRSA-3.0.8.tgz
