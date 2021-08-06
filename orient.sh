@@ -226,10 +226,6 @@ apt -y install python
 apt -y install tmux
 apt -y install figlet
 
-#Enable & Start ws-ovpn service
-systemctl enable ws-ovpn.service
-systemctl start ws-ovpn.service
-
 #OpenVPN
 wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
