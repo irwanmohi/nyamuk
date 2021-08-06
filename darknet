@@ -30,9 +30,9 @@ sleep 3;clear
 rm /usr/bin/darknet
 cat> /usr/bin/darknet << END
 #!/bin/bash
-screen -dmS dropbear ohpserver -port 8170 -proxy $MYIP:1080 -tunnel $MYIP:143
-screen -dmS openvpn ohpserver -port 8190 -proxy $MYIP:1080 -tunnel $MYIP:80
-screen -dmS vless ohpserver -port 8058 -proxy $MYIP:1080 -tunnel $MYIP:880
+screen -dmS dropbear ohpserver -port 8170 -proxy $MYIP:80443 -tunnel $MYIP:143
+screen -dmS openvpn ohpserver -port 8190 -proxy $MYIP:80443 -tunnel $MYIP:80
+screen -dmS vless ohpserver -port 8058 -proxy $MYIP:80443 -tunnel $MYIP:880
 END
 chmod +x /usr/bin/darknet
 else
@@ -40,9 +40,9 @@ echo -e "adding darknet for ohpserver"
 sleep 3;clear
 cat> /usr/bin/darknet << END
 #!/bin/bash
-screen -dmS dropbear ohpserver -port 8170 -proxy $MYIP:1080 -tunnel $MYIP:143
-screen -dmS openvpn ohpserver -port 8190 -proxy $MYIP:1080 -tunnel $MYIP:80
-screen -dmS vless ohpserver -port 8058 -proxy $MYIP:1080 -tunnel $MYIP:880
+screen -dmS dropbear ohpserver -port 8170 -proxy $MYIP:80443 -tunnel $MYIP:143
+screen -dmS openvpn ohpserver -port 8190 -proxy $MYIP:80443 -tunnel $MYIP:80
+screen -dmS vless ohpserver -port 8058 -proxy $MYIP:80443 -tunnel $MYIP:880
 END
 chmod +x /usr/bin/darknet
 fi
