@@ -41,15 +41,15 @@ fi
 	WG_CONFIG="/etc/wireguard/wg0.conf"
 	LASTIP=$( grep "/32" $WG_CONFIG | tail -n1 | awk '{print $3}' | cut -d "/" -f 1 | cut -d "." -f 4 )
 	if [[ "$LASTIP" = "" ]]; then
-	CLIENT_ADDRESS="10.6.0.2"
+	CLIENT_ADDRESS="10.8.0.2"
 	else
-	CLIENT_ADDRESS="10.6.0.$((LASTIP+1))"
+	CLIENT_ADDRESS="10.8.0.$((LASTIP+1))"
 	fi
 
 	# Adguard DNS by default
 	CLIENT_DNS_1="1.1.1.1"
 
-	CLIENT_DNS_2="1.0.0.1"
+	CLIENT_DNS_2="8.8.8.8"
 	MYIP=$(wget -qO- ifconfig.me/ip);
 	read -p "Expired (days): " masaaktif
 	exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
