@@ -39,7 +39,6 @@ rm -f /root/wg.sh
 rm -f /root/ss.sh
 rm -f /root/ssr.sh
 rm -f /root/ins-vt.sh
-rm -f /root/websocket.sh
 history -c && history -w
 echo "1.2" > /home/ver
 clear
@@ -62,17 +61,17 @@ echo "   - OpenVPN                 : TCP 1194, UDP 2200, SSL 442"  | tee -a log-
 echo "   - Stunnel4                : 444, 666"  | tee -a log-install.txt
 echo "   - Dropbear                : 109, 143"  | tee -a log-install.txt
 echo "   - Squid Proxy             : 8181, 8080, 8888 (Proxy Sotong)"  | tee -a log-install.txt
-echo "   - Magic Proxy SSH         : 8180 (Proxy Tisu Magic)"  | tee -a log-install.txt
-echo "   - Magic Proxy OVPN        : 8000 (Proxy Tisu Magic)"  | tee -a log-install.txt
+echo "   - Magic Proxy SSH         : 8190 (Proxy Tisu Magic)"  | tee -a log-install.txt
+echo "   - Magic Proxy OVPN        : 8189 (Proxy Tisu Magic)"  | tee -a log-install.txt
 echo "   - Badvpn                  : 7100, 7200, 7300"  | tee -a log-install.txt
 echo "   - Nginx                   : 81"  | tee -a log-install.txt
-echo "   - Wireguard               : 8118"  | tee -a log-install.txt
+echo "   - Wireguard               : 8880"  | tee -a log-install.txt
 echo "   - Shadowsocks-R           : 1443-1543"  | tee -a log-install.txt
 echo "   - SS-OBFS TLS             : 2443-2543"  | tee -a log-install.txt
 echo "   - SS-OBFS HTTP            : 3443-3543"  | tee -a log-install.txt
-echo "   - V2RAY Vmess TLS         : 443"  | tee -a log-install.txt
+echo "   - V2RAY Vmess TLS         : 888"  | tee -a log-install.txt
 echo "   - V2RAY Vmess None TLS    : 500"  | tee -a log-install.txt
-echo "   - V2RAY Vless TLS         : 888"  | tee -a log-install.txt
+echo "   - V2RAY Vless TLS         : 443"  | tee -a log-install.txt
 echo "   - V2RAY Vless None TLS    : 880"  | tee -a log-install.txt
 echo "   - Trojan                  : 550"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
