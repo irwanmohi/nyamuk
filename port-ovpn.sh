@@ -46,15 +46,14 @@ cert key/server.crt
 key key/server.key
 dh key/dh.pem
 verify-client-cert none
-server 172.29.0.0 255.255.255.0
+server 10.6.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
+push "redirect-gateway def1 bypass-dhcp"
 keepalive 10 120
 persist-key
 persist-tun
 persist-remote-ip
 ncp-disable
-duplicate-cn
 cipher none
 auth none
 status /var/log/openvpn/openvpn-status.log
@@ -63,8 +62,6 @@ verb 3
 mute 10
 plugin openvpn-plugin-auth-pam.so login
 username-as-common-name
-socket-flags TCP_NODELAY
-push "socket-flags TCP_NODELAY"
 END
 cat > /root/ovpn-config/client-tcp.ovpn <<-END
 # My Team VPN Premium Script
@@ -74,20 +71,18 @@ dev tun
 proto tcp
 remote $MYIP $vpn
 resolv-retry infinite
-nobind
-persist-key
-persist-tun
 remote-cert-tls server
 cipher none
 auth none
 verb 3
 auth-user-pass
+setenv CLIENT_CERT 0
 http-proxy-retry
 http-proxy $MYIP 8080
-http-proxy-option CUSTOM-HEADER Protocol HTTP/1.1
-http-proxy-option CUSTOM-HEADER Host HOST
-http-proxy-option CUSTOM-HEADER X-Online-Host HOST
-http-proxy-option CUSTOM-HEADER X-Forward-Host HOST
+http-proxy-option CUSTOM-HEADER GET HTTP/1.1
+http-proxy-option CUSTOM-HEADER Host $MYIP
+http-proxy-option CUSTOM-HEADER X-Online-Host $MYIP
+http-proxy-option CUSTOM-HEADER X-Forward-Host $MYIP
 http-proxy-option CUSTOM-HEADER Connection Keep-Alive
 dhcp-option DNS 8.8.8.8
 dhcp-option DNS 8.8.4.4
@@ -125,15 +120,14 @@ cert key/server.crt
 key key/server.key
 dh key/dh.pem
 verify-client-cert none
-server 172.29.0.0 255.255.255.0
+server 10.7.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
+push "redirect-gateway def1 bypass-dhcp"
 keepalive 10 120
 persist-key
 persist-tun
 persist-remote-ip
 ncp-disable
-duplicate-cn
 cipher none
 auth none
 status /var/log/openvpn/openvpn-status.log
@@ -142,8 +136,6 @@ verb 3
 mute 10
 plugin openvpn-plugin-auth-pam.so login
 username-as-common-name
-socket-flags TCP_NODELAY
-push "socket-flags TCP_NODELAY"
 END
 cat > /root/ovpn-config/client-udp.ovpn <<-END
 # My Team VPN Premium Script
@@ -153,13 +145,11 @@ dev tun
 proto udp
 remote $MYIP $vpn
 resolv-retry infinite
-nobind
-persist-key
-persist-tun
 remote-cert-tls server
 cipher none
 auth none
 verb 3
+setenv CLIENT_CERT 0
 auth-user-pass
 dhcp-option DNS 8.8.8.8
 dhcp-option DNS 8.8.4.4
