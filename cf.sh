@@ -1,23 +1,10 @@
 #!/bin/bash
-red='\e[1;31m'
-green='\e[0;32m'
-NC='\e[0m'
-MYIP=$(wget -qO- ifconfig.me/ip);
-echo "Checking VPS"
-IZIN=$( curl https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/siap/beta/ipvps | grep $MYIP )
-if [ $MYIP = $IZIN ]; then
-echo -e "${green}Permission Accepted...${NC}"
-else
-echo -e "${red}Permission Denied!${NC}";
-echo "Only For Premium Users"
-exit 0
-fi
 apt install jq curl -y
-DOMAIN=cvpn.ovh
+DOMAIN=cvpn.ovhaidan.my
 sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
-SUB_DOMAIN=${sub}.cvpn.ovh
-CF_ID=sayangsya168@gmail.com
-CF_KEY=9da2e56fe69e49a743b40c22e0b5a44d06ecd
+SUB_DOMAIN=${sub}.aidan.my
+CF_ID=aidan@aidan.my
+CF_KEY=772d98cbf084c6352f15377ee6b3d682
 set -euo pipefail
 IP=$(wget -qO- ifconfig.me/ip);
 echo "Updating DNS for ${SUB_DOMAIN}..."

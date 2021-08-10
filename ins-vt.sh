@@ -16,7 +16,7 @@ date
 mkdir -p /etc/trojan/
 touch /etc/trojan/akun.conf
 # install v2ray
-wget https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/go.sh && chmod +x go.sh && ./go.sh
+chmod +x go.sh && ./go.sh
 rm -f /root/go.sh
 bash -c "$(wget -q -O- https://raw.githubusercontent.com/trojan-gfw/trojan-quickstart/master/trojan-quickstart.sh)"
 mkdir /root/.acme.sh
@@ -487,19 +487,19 @@ systemctl enable trojan
 systemctl restart v2ray
 systemctl enable v2ray
 cd /usr/bin
-wget -O add-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/add-ws.sh"
-wget -O add-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/add-vless.sh"
-wget -O add-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/add-tr.sh"
-wget -O del-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/del-ws.sh"
-wget -O del-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/del-vless.sh"
-wget -O del-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/del-tr.sh"
-wget -O cek-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cek-ws.sh"
-wget -O cek-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cek-vless.sh"
-wget -O cek-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cek-tr.sh"
-wget -O renew-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/renew-ws.sh"
-wget -O renew-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/renew-vless.sh"
-wget -O renew-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/renew-tr.sh"
-wget -O certv2ray "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cert.sh"
+wget -q -O add-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/add/add-ws.sh"
+wget -q -O add-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/add/add-vless.sh"
+wget -q -O add-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/add/add-tr.sh"
+wget -q -O del-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/delete/del-ws.sh"
+wget -q -O del-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/delete/del-vless.sh"
+wget -q -O del-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/delete/del-tr.sh"
+wget -q -O cek-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/cek/cek-ws.sh"
+wget -q -O cek-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/cek/cek-vless.sh"
+wget -q -O cek-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/cek/cek-tr.sh"
+wget -q -O renew-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/renew/renew-ws.sh"
+wget -q -O renew-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/renew/renew-vless.sh"
+wget -q -O renew-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/renew/renew-tr.sh"
+wget -q -O certv2ray "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/cert.sh"
 chmod +x add-ws
 chmod +x add-vless
 chmod +x add-tr
@@ -510,7 +510,7 @@ chmod +x cek-ws
 chmod +x cek-vless
 chmod +x cek-tr
 chmod +x renew-ws
-cmod +x renew-vless
+chmod +x renew-vless
 chmod +x renew-tr
 chmod +x certv2ray
 cd

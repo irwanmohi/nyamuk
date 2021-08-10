@@ -1,0 +1,46 @@
+════════════════════════════════════════════════════════════════════════════════
+=                        Script Vps For Debian N Ubuntu                        =
+════════════════════════════════════════════════════════════════════════════════
+=                        Myteam Script Phreaker Malaysia                       =
+=                                                                              =
+=                        Version 5 Full Menu Script                            =
+════════════════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════════════════
+
+   >>> Service & Port
+   - OpenSSH                 : 22
+   - OpenVPN                 : TCP 1194, UDP 2200, SSL 442
+   - Stunnel4                : 444, 666
+   - Dropbear                : 109, 143
+   - Squid Proxy             : 8181, 8080, 8888 (Proxy Sotong)
+   - Magic Proxy SSH         : 8190 (Proxy Tisu Magic)
+   - Magic Proxy OVPN        : 8189 (Proxy Tisu Magic)
+   - Badvpn                  : 7100, 7200, 7300
+   - Nginx                   : 81
+   - Wireguard               : 8880
+   - Shadowsocks-R           : 1443-1543
+   - SS-OBFS TLS             : 2443-2543
+   - SS-OBFS HTTP            : 3443-3543
+   - V2RAY Vmess TLS         : 888
+   - V2RAY Vmess None TLS    : 500
+   - V2RAY Vless TLS         : 443
+   - V2RAY Vless None TLS    : 880
+   - Trojan                  : 550
+
+   >>> Server Information & Other Features
+   - Timezone                : Asia/Kuala_Lumpur (UMT +8)
+   - Fail2Ban                : [ON]
+   - Dflate                  : [ON]
+   - IPtables                : [ON]
+   - Auto-Reboot             : [ON]
+   - IPv6                    : [OFF]
+   - Autoreboot On 12.00 UMT +8
+   - Autobackup Data
+   - Restore Data
+   - Auto Delete Expired Account
+   - Full Orders For Various Services
+   - White Label
+   - Installation Log --> /root/log-install.txt
+
+════════════════════════════════════════════════════════════════════════════════
