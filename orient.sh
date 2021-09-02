@@ -41,7 +41,7 @@ gem install lolcat
 apt-get autoremove -y
 
 # simple password minimal
-wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/password"
+wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/password"
 chmod +x /etc/pam.d/common-password
 
 # Removing some duplicated sshd server configs
@@ -140,15 +140,15 @@ apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/nginx.conf"
+wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/nginx.conf"
 mkdir -p /home/vps/public_html
 echo "<pre>Premium Script By MyTeam Phreaker</pre>" > /home/vps/public_html/index.html
-wget -q -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/vps.conf"
+wget -q -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
 cd
-wget -q -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/badvpn-udpgw64"
+wget -q -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -177,7 +177,7 @@ service ssh restart
 
 # install squid
 cd
-wget -q -O /etc/squid/squid.conf "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/squid3.conf"
+wget -q -O /etc/squid/squid.conf "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
 # setting vnstat
@@ -227,7 +227,7 @@ apt -y install tmux
 apt -y install figlet
 
 #OpenVPN
-wget -q https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
+wget -q https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
 # Some workaround for OpenVZ machines for "Startup error" openvpn service
 if [[ "$(hostnamectl | grep -i Virtualization | awk '{print $2}' | head -n1)" == 'openvz' ]]; then
@@ -266,7 +266,7 @@ echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # banner /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/issue.net"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/issue.net"
 echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
@@ -290,41 +290,41 @@ netfilter-persistent reload
 # download script
 cd
 cd /usr/bin
-wget -O add-host "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/add-host.sh"
-wget -O about "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/about.sh"
-wget -q -O menu "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/chknetLlLlLLLLllll/beta/menu.sh"
-wget -O usernew "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/hapus.sh"
-wget -O member "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/member.sh"
-wget -O delete "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/delete.sh"
-wget -O cek "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cek.sh"
-wget -O restart "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/info.sh"
-wget -O ram "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/ram.sh"
-wget -O renew "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/renew.sh"
-wget -O autokill "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/autokill.sh"
-wget -O ceklim "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/tendang.sh"
-wget -O clear-log "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/clear-log.sh"
-wget -O change-port "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/change.sh"
-wget -O port-ovpn "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-ovpn.sh"
-wget -O port-ssl "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-ssl.sh"
-wget -O port-wg "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-wg.sh"
-wget -O port-tr "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-tr.sh"
-wget -O port-squid "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-squid.sh"
-wget -O port-ws "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-ws.sh"
-wget -O port-vless "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/port-vless.sh"
-wget -O wbmn "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/webmin.sh"
-wget -O xp "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/xp.sh"
-wget -O /usr/bin/user-limit https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/user-limit.sh && chmod +x /usr/bin/user-limit
-wget -O cff "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cff.sh"
-wget -O cfh "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/cfh.sh"
-wget -O update "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/update.sh"
-wget -O strt "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/strt.sh"
-wget -O swap "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/swapkvm.sh"
-wget -O autoreboot "https://raw.githubusercontent.com/LolLloLlLolLlLolL-rgb/nyamuk/beta/autoreboot.sh"
+wget -O add-host "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/add-host.sh"
+wget -O about "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/about.sh"
+wget -q -O menu "https://raw.githubusercontent.com/irwanmohi/update/beta/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/hapus.sh"
+wget -O member "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/member.sh"
+wget -O delete "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/delete.sh"
+wget -O cek "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/cek.sh"
+wget -O restart "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/info.sh"
+wget -O ram "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/ram.sh"
+wget -O renew "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/renew.sh"
+wget -O autokill "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/autokill.sh"
+wget -O ceklim "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/ceklim.sh"
+wget -O tendang "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/tendang.sh"
+wget -O clear-log "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/clear-log.sh"
+wget -O change-port "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/change.sh"
+wget -O port-ovpn "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/port-ovpn.sh"
+wget -O port-ssl "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/port-ssl.sh"
+wget -O port-wg "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/port-wg.sh"
+wget -O port-tr "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/port-tr.sh"
+wget -O port-squid "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/port-squid.sh"
+wget -O port-ws "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/port-ws.sh"
+wget -O port-vless "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/port-vless.sh"
+wget -O wbmn "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/webmin.sh"
+wget -O xp "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/xp.sh"
+wget -O /usr/bin/user-limit https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/user-limit.sh && chmod +x /usr/bin/user-limit
+wget -O cff "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/cff.sh"
+wget -O cfh "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/cfh.sh"
+wget -O update "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/update.sh"
+wget -O strt "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/strt.sh"
+wget -O swap "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/swapkvm.sh"
+wget -O autoreboot "https://raw.githubusercontent.com/irwanmohi/nyamuk/beta/autoreboot.sh"
 chmod +x add-host
 chmod +x menu
 chmod +x usernew
